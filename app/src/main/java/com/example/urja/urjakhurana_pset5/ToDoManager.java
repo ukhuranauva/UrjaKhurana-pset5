@@ -1,13 +1,11 @@
 package com.example.urja.urjakhurana_pset5;
 
 import android.content.Context;
-import android.util.Log;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /* The ToDoManager is a Singleton class which manages all of the information in the files. It
  * has an ArrayList which consists of all the to-do lists of the user. The manager reads the files
@@ -37,10 +35,8 @@ public class ToDoManager {
     public void readToDos(String fileContent) {
         // clears the old data in the Arraylist
         toDoLists.clear();
-        Log.d("hello", fileContent);
         // splits all the different lists into seperate lists with "+" seperator
         String[] savedLists = fileContent.split("\\+");
-        Log.d("string", Arrays.toString(savedLists));
         // for each list, create the ToDoList object with its ToDoItems which are the tasks
         for(int i = 0; i < savedLists.length; i++ ) {
             // splits the listName from the tasks
@@ -56,7 +52,6 @@ public class ToDoManager {
                 for(int j = 0; j < items.length; j++) {
                     // split on $ to get the name and status of the task
                     String[] nameAndStatus = items[j].split("\\$");
-                    Log.d("string", Arrays.toString(nameAndStatus));
                     String title = nameAndStatus[0];
                     String status = nameAndStatus[1];
                     // create object of the task and add it to list of task
@@ -123,7 +118,6 @@ public class ToDoManager {
             // add seperator for in between lists
             newLists += "+";
         }
-        Log.d("jlaskjfkl", newLists);
         // save the new data
         writeToFile(context, newLists);
     }
